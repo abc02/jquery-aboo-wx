@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能鞋垫</title>
+    <link href="/styles/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/common.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <main class="container">
+       <section class="content-container pt20 pl20 pr20">
+            <h3 class="content-title border-bottom pb20 mb20" style="font-weight: 500;"></h3>
+       </section>
+       <section class="problem-container fixed-bottom border-top pt20 pb20">
+            <div class="problem-button text-center" style="color: #399af7; font-size: 18px;">
+                 问题没解决，联系客户：）
+            </div>
+        </section>
+    </main>
+
+    <script type="text/javascript" src="/lib//jquery.min.js"></script>
+    <script type="text/javascript" src="/lib//jquery.min.map"></script>
+    <script type="text/javascript">
+        $(_ => {
+            let $contentContainer = $('.content-container')
+            let contentData = {
+                title: '鞋垫到冬天后用的时间会变少？',
+                content: [
+                    '电池爱的那地方好四等奖扫我哈佛isad好哦额分别将改变和分工不弄个及;',
+                    '低温打算考虑就打算考虑将罚款律师费安排房间大派送极高的碰见你不怕国航发生地上的佛光俱乐部和;',
+                    '冬天打死哦好的借口都是空间的按时间段怕搜到就按收盘价的怕积分配送定是倒闭是南方姑娘爆破法规我聚宝盆法规及内部皮肤狗贫困发送到;'
+                ]
+            }
+            let createContentElement = (data, $el) => {
+                let Tmp = data.content.map((item, index)=> {
+                let innerTmp = `<li style="line-height: 25px;" class="gray"><span>${index + 1}. </span> ${item} </li>`
+                    if(index === 0) return `<ul class="mb20">${innerTmp}`
+                    if(index === data.content.length  - 1) return `${innerTmp}</ul>`
+                    return innerTmp
+                }).join('')
+                return $el.append(Tmp).find('.content-title').text(data.title)
+            }
+            let x = createContentElement(contentData, $contentContainer)
+            console.log(x)
+        })
+    </script>
+</body>
+</html>
