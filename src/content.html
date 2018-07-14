@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>智能鞋垫</title>
     <link href="/styles/reset.css" rel="stylesheet" type="text/css"/>
@@ -13,8 +13,8 @@
        <section class="content-container pt20 pl20 pr20">
             <h3 class="content-title border-bottom pb20 mb20" style="font-weight: 500;"></h3>
        </section>
-       <section class="problem-container fixed-bottom border-top pt20 pb20">
-            <div class="problem-button text-center" style="color: #399af7; font-size: 18px;">
+       <section class="problem-container fixed-bottom border-top">
+            <div class="problem-button text-center pt20 pb20" style="color: #399af7; font-size: 18px;">
                  问题没解决，联系客户：）
             </div>
         </section>
@@ -25,6 +25,7 @@
     <script type="text/javascript">
         $(_ => {
             let $contentContainer = $('.content-container')
+            let $problemButton = $('.problem-button')
             let contentData = {
                 title: '鞋垫到冬天后用的时间会变少？',
                 content: [
@@ -43,7 +44,9 @@
                 return $el.append(Tmp).find('.content-title').text(data.title)
             }
             let x = createContentElement(contentData, $contentContainer)
-            console.log(x)
+            $problemButton.on('click', _ => {
+                location.href = 'contact.html'
+            })
         })
     </script>
 </body>

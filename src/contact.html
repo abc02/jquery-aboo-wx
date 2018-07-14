@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>联系我们</title>
+    <link href="/styles/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/common.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="contact-main">
+    <main class="container">
+        <section class="contact-container mt30" style="margin: 0 auto; width: 90vw;">
+            <h2 class="contact-title white relative pb10 mb10" style="letter-spacing: 2px; width: 30vw;">用心聆听您的声音</h2>
+            <p class="mb30" style="color: #bdeafd;">竭诚解决你的问题</p>
+        </section>
+       
+       <!-- <section class="problem-container fixed-bottom border-top pt20 pb20">
+            <div class="problem-button text-center" style="color: #399af7; font-size: 18px;">
+                 问题没解决，联系客户：）
+            </div>
+        </section> -->
+    </main>
+
+    <script type="text/javascript" src="/lib//jquery.min.js"></script>
+    <script type="text/javascript" src="/lib//jquery.min.map"></script>
+    <script type="text/javascript">
+        $(_ => {
+            let $body = $('body')
+            let $contactContainer = $('.contact-container')
+            let $contactUl = $('.contact-ul')
+            let contactmArrys = [
+                {
+                    title: '全国服务热线',
+                    router: {
+                        class: 'popups',
+                        title: '全国服务热线（周一到周五9:00-17：00）',
+                        sub: '0577-88789089'
+                    },
+                    sub: '0577-88789089',
+                    img: '/assets/contact/Help_Customer_service@2x.png',
+                    width: 49,
+                    height: 49,
+                },
+                {
+                    title: '官方微信',
+                    router: {
+                        class: 'wx'
+                    },
+                    sub: '人工服务时段为9:00-17:00',
+                    img: '/assets/contact/Help_WeChat@2x.png',
+                    width: 49,
+                    height: 47,
+                },
+                {
+                    title: '阿布跑跑官网',
+                    sub: '看看阿布跑跑官方网址是多少',
+                    router: {
+                        class: "popups",
+                        title: '阿布跑跑官网网址',
+                        sub: 'www.abpao.com'
+                    },
+                    img: '/assets/contact/Help_Website@2x.png',
+                    width: 49,
+                    height: 49,
+                },
+                {
+                    title: '售后服务网点',
+                    sub: '看看离你最近的服务网点在哪里',
+                    router: {
+                        class: 'service'
+                    },
+                    img: '/assets/contact/Help_DOt@2x.png',
+                    width: 49,
+                    height: 61,
+                }
+            ]
+            let createMaskElement = (data) => {
+                let tmp = `<div style="position: fixed; top: 0; left: 0; right:0; bottom: 0; background-color: rgba(0,0,0, .3); z-index: 99;display: flex;justify-content: center;align-items: center">
+                    <div class="bg-white" style="width: 80%; margin: 0 auto;">
+                        <div class="body text-center pt20 pl10 pr10 pb30">
+                            <h4 class="mb20">${data.title}</h4>
+                            <p class="gray">${data.sub}</p>
+                        </div>
+                        <div class="bottom border-top" style="display: flex;">
+                            <button style="flex: 1;font-size: 16px;" class="pt10 pb10 border-right cancel">取消</button>
+                            <button style="flex: 1; color: #399af7; font-size: 16px;" class="pt10 pb10 confirm">确认</button>
+                        </div>
+                    </div>
+                </div>`
+                let $tmp = $(tmp)
+                $tmp.find('.cancel').click(e => {
+                   $tmp.remove()
+                })
+                $tmp.find('.confirm').click(e => {
+                   $tmp.remove()
+                })
+                return $body.append($tmp)
+            }
+            let createHotElement = (data, $el) => {
+                let tmp = data.map((item, index)=> {
+                let innerTmp = `<li class="relative bg-white mb20 pt20 pb20 pl20 pr10 shadow-bottom ${item.router.class}"
+                title="${item.router.class === 'popups' ? item.router.title : ''}"
+                sub="${item.router.class === 'popups' ? item.router.sub : ''}"
+                style="display: flex; border-radius: 6px;" >
+                <div class="mr20" style="width: ${item.width}px; height: ${item.height}px;">
+                <img src="${item.img}" alt="${item.title}"/>
+                </div>
+                <div style="flex: 1;">
+                <h4 class="mb10">${item.title}</h4>
+                <p class="gray ellipsis">${item.sub}</p>
+                </div>
+                <span class="absolute-middle-right" style="width: 8px; height: 18px; right: 10px;"><img src="/assets/contact/Help_Return_Gray@2x.png" alt="nav_next"/></span>
+                </li>`
+                    if(index === 0) return `<ul class="contact-ul">${innerTmp}`
+                    if(index === data.length  - 1) return `${innerTmp}</ul>`
+                    return innerTmp
+                }).join('')
+                $el.on('click', '.contact-ul > li', e => {
+                    let $e = $(e.currentTarget)
+                    if ($e.hasClass('popups')) createMaskElement({title: $e.attr('title'), sub: $e.attr('sub')})
+                    if ($e.hasClass('wx')) location.href = 'wx.html'
+                    if ($e.hasClass('service')) location.href = 'service.html'
+                })
+                return $el.append(tmp)
+            }
+            let x = createHotElement(contactmArrys, $contactContainer)
+        })
+    </script>
+</body>
+</html>

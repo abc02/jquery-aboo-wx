@@ -196,6 +196,10 @@
 .border-bottom:last-child {
     border-bottom:none;
 }
+.shadow-top {
+    box-shadow: 0 -6px 6px rgba(0,0,0, .1);
+    z-index: 99;
+}
 .shadow-bottom {
     box-shadow: 0 2px 6px rgba(0,0,0, .1);
     z-index: 99;
@@ -244,4 +248,24 @@
     color:#ec6000;
     font-style: italic;
     -webkit-mask:linear-gradient(#ec6102, #ee6201, 80%, transparent );
+}
+.contact-main {
+    background-color: #f0fbff;
+    background-image: url('../assets/contact/Help_background@2x.png');
+    background-position: top center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.contact-title::after {
+    content: ' ';
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.problem-container{ 
+    z-index: 99;
 }

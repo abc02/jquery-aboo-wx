@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>帮助与反馈</title>
     <link href="/styles/reset.css" rel="stylesheet" type="text/css"/>
     <link href="/styles/common.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-    <main class="container height-100vh bg-f5f5f5">
+<body class="bg-f5f5f5">
+    <main class="container" style="height: 90vh;">
         <section class="pt20 pb20 pl20 pr20" >
             <div class="search-input relative">
             <!-- <input class="search-input"> -->
@@ -26,7 +26,8 @@
         <section class="problem-container">
             <h5 class="color-999999 mb10 pl20 pr20 ">常见问题归类</h5>
         </section>
-        <section class="suggest-container fixed-bottom">
+    </main>
+    <section class="suggest-container fixed-bottom shadow-top " style="height: 7vh;">
             <div class="suggest-button relative">
             <button class="suggest-button">
                 <p class="absolute-middle-center relative gray">
@@ -36,8 +37,6 @@
             </button>
             </div>
         </section>
-    </main>
-
     <script type="text/javascript" src="/lib//jquery.min.js"></script>
     <script type="text/javascript" src="/lib//jquery.min.map"></script>
     <script type="text/javascript">
@@ -94,7 +93,7 @@
                 return $el.append(Tmp)
             }
             let createProblemEelement = (data, $el) => {
-                let Tmp = data.map((item, index)=> {
+                let tmp = data.map((item, index)=> {
                 let innerTmp = `<li style="width: 33%" class="mb10">
                 <div style="width: ${item.width}px; height: ${item.height}px; margin: 0 auto;">
                 <img src="${item.img}" alt="${item.text}"/>
@@ -105,7 +104,10 @@
                     if(index === data.length  - 1) return `${innerTmp}</ul>`
                     return innerTmp
                 }).join('')
-                return $el.append(Tmp)
+                let $tmp = $(tmp)
+                return $el.append($tmp).on('click', 'li', e => {
+                    location.href = 'stylelist.html'
+                })
             }
             let x = createHotEelement(hotArrays, $hotContainer)
             let x2 = createProblemEelement(problemArrys, $problemContainer)

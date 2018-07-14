@@ -4,21 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>帮助与反馈</title>
+    <title>定位</title>
     <link href="/styles/reset.css" rel="stylesheet" type="text/css"/>
     <link href="/styles/common.css" rel="stylesheet" type="text/css"/>
 </head>
-<body>
-    <main class="container bg-f5f5f5">
-        <section class="pt10 pb10 pl20 pr20 bg-white mb20" style="display: flex;" >
-            <div class="search-input-outer relative">
-                <span style="width: 18px; height: 18px; display: block;" class="ml10 mr10"><img src="/assets/Help_Search2x.png" alt="search-icon"/></span>
-                <input class="search-input-inner" style="flex: 1;" placeholder="有问题，搜一下" />
-            </div>
-            <button style="font-size: 14px; margin: 0 auto;">取消</button>
+<body class="bg-f5f5f5">
+    <main class="container">
+        <section class="stylelist-container" style="margin-bottom: 20px;">
         </section>
-        <section class="hot-container">
-            <h5 class="color-999999 mb10 pl20 pr20 ">热点问题</h5>
+        <p style="margin-bottom: 90px; color: #399af7;" class="text-center pt10 pb10 more-button">加载更多</p>
+        <section class="problem-container fixed-bottom border-top pt20 pb20 bg-white">
+            <div class="problem-button text-center" style="color: #399af7; font-size: 18px;">
+                 问题没解决，联系客户：）
+            </div>
         </section>
     </main>
 
@@ -26,10 +24,9 @@
     <script type="text/javascript" src="/lib//jquery.min.map"></script>
     <script type="text/javascript">
         $(_ => {
-            let $hotContainer = $('.hot-container')
-            let $problemContainer = $('.problem-container')
-            let $searchInput = $('.search-input')
-            let hotArrays = [
+            let $stylelistContainer = $('.stylelist-container')
+            let $moreButton = $('.more-button')
+            let testdata = [
                 '新手关注', 
                 '鞋垫如何清洁?', 
                 '鞋垫到冬天后用的时间会变少，充电也会巴基哪里开发疟',
@@ -51,15 +48,15 @@
                 '怎么添加其他成员微聊?',
                  ]
             let createHotEelement= (data, $el) => {
-                let Tmp = data.map((item, index)=> {
-                let innerTmp = `<li class="relative pt10 pb10 pl10 pr30 ellipsis border-bottom"><span text="${index}" class="li-mark ml10 mr10"></span>${item} <span class="absolute-middle-right" style="width: 8px; height: 18px; right: 10px;"><img src="/assets/contact/Help_Return_Gray@2x.png" alt="nav_next"/></span></li>`
-                    if(index === 0) return `<ul class="bg-white mb20">${innerTmp}`
+                let tmp = data.map((item, index)=> {
+                let innerTmp = `<li class="relative pt20 pb20 pl10 pr30 ellipsis border-bottom">${item} <span class="absolute-middle-right" style="width: 8px; height: 18px; right: 10px;"><img src="/assets/contact/Help_Return_Gray@2x.png" alt="nav_next"/></span></li>`
+                    if(index === 0) return `<ul class="bg-white">${innerTmp}`
                     if(index === data.length  - 1) return `${innerTmp}</ul>`
                     return innerTmp
                 }).join('')
-                return $el.append(Tmp)
+                return $el.append($(tmp))
             }
-            let x = createHotEelement(hotArrays, $hotContainer)
+            let x = createHotEelement(testdata, $stylelistContainer)
         })
     </script>
 </body>
